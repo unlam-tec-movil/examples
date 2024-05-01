@@ -81,4 +81,7 @@ dependencies {
 
     androidTestImplementation(libs.google.dagger.hilt.android.testing)
     testImplementation(libs.google.dagger.hilt.android.testing)
+
+    // Coil
+    implementation(libs.coil)
 }

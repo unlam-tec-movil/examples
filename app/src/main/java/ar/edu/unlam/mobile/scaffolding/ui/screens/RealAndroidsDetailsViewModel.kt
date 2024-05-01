@@ -3,10 +3,11 @@ package ar.edu.unlam.mobile.scaffolding.ui.screens
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import ar.edu.unlam.mobile.scaffolding.domain.androids.RealAndroid
-import ar.edu.unlam.mobile.scaffolding.domain.androids.usecases.Androids
+import ar.edu.unlam.mobile.scaffolding.domain.androids.usecases.GetAndroids
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import javax.annotation.concurrent.Immutable
 import javax.inject.Inject
@@ -21,22 +22,26 @@ sealed interface AndroidDetailUIState {
 }
 
 data class RealAndroidDetailsUIState(
-    val androids: AndroidDetailUIState = AndroidDetailUIState.Loading,
+    val androidDetailUIState: AndroidDetailUIState = AndroidDetailUIState.Loading,
 )
 
 @HiltViewModel
 class RealAndroidsDetailsViewModel
     @Inject
-    constructor(androidsService: Androids) : ViewModel() {
+    constructor(getAndroidsService: GetAndroids) : ViewModel() {
         private val _uiState = MutableStateFlow(RealAndroidDetailsUIState())
 
         val uiState = _uiState.asStateFlow()
 
         init {
             viewModelScope.launch {
-                androidsService.getAndroid(1u).collect {
-                    RealAndroidDetailsUIState(AndroidDetailUIState.Success(it))
-                }
+                getAndroidsService.getAndroid(1u)
+                    .catch {
+                        _uiState.value = RealAndroidDetailsUIState(AndroidDetailUIState.Error(it.message ?: "Error"))
+                    }
+                    .collect {
+                        RealAndroidDetailsUIState(AndroidDetailUIState.Success(it))
+                    }
             }
         }
     }
