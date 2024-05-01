@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
+import ar.edu.unlam.mobile.scaffolding.ui.components.AndroidCard
 
 @Composable
 fun RealAndroidDetailsScreen(viewModel: RealAndroidsDetailsViewModel = hiltViewModel()) {
@@ -18,6 +19,7 @@ fun RealAndroidDetailsScreen(viewModel: RealAndroidsDetailsViewModel = hiltViewM
         }
 
         is AndroidDetailUIState.Success -> {
+            AndroidCard(android = androidState.android)
         }
 
         is AndroidDetailUIState.Error -> {
