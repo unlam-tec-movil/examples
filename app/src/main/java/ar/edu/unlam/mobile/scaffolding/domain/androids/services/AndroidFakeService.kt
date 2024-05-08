@@ -1,7 +1,7 @@
 package ar.edu.unlam.mobile.scaffolding.domain.androids.services
 
 import ar.edu.unlam.mobile.scaffolding.domain.androids.RealAndroid
-import ar.edu.unlam.mobile.scaffolding.domain.androids.usecases.GetAndroids
+import ar.edu.unlam.mobile.scaffolding.domain.androids.usecases.AndroidsUseCases
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -32,10 +32,10 @@ val androids =
         ),
     )
 
-class AndroidService
+class AndroidFakeService
     @Inject
-    constructor() : GetAndroids {
-        override suspend fun getAndroids(): Flow<List<RealAndroid>> {
+    constructor() : AndroidsUseCases {
+        override suspend fun getAndroidsList(): Flow<List<RealAndroid>> {
             return flow {
                 emit(
                     androids,
@@ -57,5 +57,9 @@ class AndroidService
                     emit(res!!)
                 }
             }
+        }
+
+        override suspend fun createAndroid(android: RealAndroid): Flow<RealAndroid> {
+            TODO("Not yet implemented")
         }
     }
