@@ -12,26 +12,29 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import ar.edu.unlam.mobile.scaffolding.domain.androids.RealAndroid
 import coil.compose.AsyncImage
 
 @Composable
-fun AndroidCard(android: RealAndroid) {
+fun ImageCard(
+    title: String,
+    text: String,
+    image: String,
+    modifier: Modifier = Modifier,
+) {
     Card(
         modifier =
-            Modifier.size(300.dp, 400.dp),
+            modifier.size(300.dp, 400.dp),
     ) {
         Box(modifier = Modifier.padding(8.dp)) {
             Column {
                 Row {
-                    Text(android.name, fontSize = 32.sp)
+                    Text(title, fontSize = 32.sp)
                 }
                 Row {
-                    Text(android.id.toString(), fontSize = 12.sp)
-                    Text(android.description, fontSize = 16.sp)
+                    Text(text, fontSize = 16.sp)
                 }
                 AsyncImage(
-                    model = android.picture,
+                    model = image,
                     contentDescription = "Android Picture",
                 )
             }
@@ -42,12 +45,9 @@ fun AndroidCard(android: RealAndroid) {
 @Preview
 @Composable
 fun AndroidCardPreview() {
-    AndroidCard(
-        RealAndroid(
-            name = "Esto es un androide",
-            id = 1u,
-            description = "Description",
-            picture = "https://i.kym-cdn.com/entries/icons/original/000/036/666/cover10.jpg",
-        ),
+    ImageCard(
+        title = "Esto es un androide",
+        text = "Esto es una descripción",
+        image = "https://i.kym-cdn.com/entries/icons/original/000/036/666/cover10.jpg",
     )
 }

@@ -9,7 +9,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import ar.edu.unlam.mobile.scaffolding.ui.components.AndroidCard
+import ar.edu.unlam.mobile.scaffolding.ui.components.ImageCard
 
 @Composable
 fun RealAndroidDetailsScreen(viewModel: RealAndroidsDetailsViewModel = hiltViewModel()) {
@@ -26,7 +26,7 @@ fun RealAndroidDetailsScreen(viewModel: RealAndroidsDetailsViewModel = hiltViewM
         }
 
         is AndroidDetailUIState.Success -> {
-            AndroidCard(android = androidState.android)
+            ImageCard(androidState.android.name, androidState.android.description, androidState.android.picture)
         }
 
         is AndroidDetailUIState.Error -> {
