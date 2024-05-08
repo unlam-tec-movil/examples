@@ -40,7 +40,7 @@ class RealAndroidsDetailsViewModel
                         _uiState.value = RealAndroidDetailsUIState(AndroidDetailUIState.Error(it.message ?: "Error"))
                     }
                     .collect {
-                        RealAndroidDetailsUIState(AndroidDetailUIState.Success(it))
+                        _uiState.value = RealAndroidDetailsUIState(AndroidDetailUIState.Success(it))
                     }
             }
         }

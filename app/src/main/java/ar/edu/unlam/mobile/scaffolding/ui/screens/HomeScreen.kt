@@ -1,5 +1,6 @@
 package ar.edu.unlam.mobile.scaffolding.ui.screens
 
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -19,7 +20,7 @@ fun HomeScreen(
 
     when (val helloState = uiState.helloMessageState) {
         is HelloMessageUIState.Loading -> {
-            // Loading
+            CircularProgressIndicator()
         }
 
         is HelloMessageUIState.Success -> {

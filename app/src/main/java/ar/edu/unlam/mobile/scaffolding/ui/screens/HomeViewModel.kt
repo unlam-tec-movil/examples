@@ -36,11 +36,13 @@ class HomeViewModel
                 HomeUIState(helloMessage.value),
             )
 
+        private val name = "2b"
+
         // UIState expone el estado anterior como un Flujo de Estado de solo lectura.
         // Esto impide que se pueda modificar el estado desde fuera del ViewModel.
         val uiState = _uiState.asStateFlow()
 
         init {
-            _uiState.value = HomeUIState(HelloMessageUIState.Success("2b"))
+            _uiState.value = HomeUIState(HelloMessageUIState.Success(name))
         }
     }
