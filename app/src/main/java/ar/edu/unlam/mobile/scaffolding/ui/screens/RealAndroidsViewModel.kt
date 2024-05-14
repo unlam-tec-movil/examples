@@ -1,8 +1,8 @@
 package ar.edu.unlam.mobile.scaffolding.ui.screens
 
 import androidx.lifecycle.ViewModel
-import ar.edu.unlam.mobile.scaffolding.domain.androids.RealAndroid
-import ar.edu.unlam.mobile.scaffolding.domain.androids.usecases.GetAndroids
+import ar.edu.unlam.mobile.scaffolding.domain.models.RealAndroid
+import ar.edu.unlam.mobile.scaffolding.domain.usecases.GetAndroids
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

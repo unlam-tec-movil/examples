@@ -1,4 +1,4 @@
-package ar.edu.unlam.mobile.scaffolding.domain.androids
+package ar.edu.unlam.mobile.scaffolding.domain.models
 
 data class RealAndroid(
     val name: String,

@@ -35,7 +35,7 @@ fun ImageCard(
                 }
                 AsyncImage(
                     model = image,
-                    contentDescription = "Android Picture",
+                    contentDescription = "Picture",
                 )
             }
         }

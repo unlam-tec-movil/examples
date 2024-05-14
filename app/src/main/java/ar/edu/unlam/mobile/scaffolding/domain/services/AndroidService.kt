@@ -1,13 +1,13 @@
-package ar.edu.unlam.mobile.scaffolding.domain.androids.services
+package ar.edu.unlam.mobile.scaffolding.domain.services
 
-import ar.edu.unlam.mobile.scaffolding.domain.androids.RealAndroid
-import ar.edu.unlam.mobile.scaffolding.domain.androids.usecases.GetAndroids
+import ar.edu.unlam.mobile.scaffolding.domain.models.RealAndroid
+import ar.edu.unlam.mobile.scaffolding.domain.usecases.GetAndroids
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-val androids =
+val androidsList =
     listOf(
         RealAndroid(
             name = "2b",
@@ -39,7 +39,7 @@ class AndroidService
         override suspend fun getAndroids(): Flow<List<RealAndroid>> {
             return flow {
                 emit(
-                    androids,
+                    androidsList,
                 )
             }
         }
@@ -48,7 +48,7 @@ class AndroidService
             return flow {
                 delay(2000)
                 var res: RealAndroid? = null
-                androids.forEach {
+                androidsList.forEach {
                     if (it.id == id) {
                         res = it
                     }

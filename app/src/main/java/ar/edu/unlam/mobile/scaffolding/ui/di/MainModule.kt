@@ -1,7 +1,7 @@
 package ar.edu.unlam.mobile.scaffolding.ui.di
 
-import ar.edu.unlam.mobile.scaffolding.domain.androids.services.AndroidService
-import ar.edu.unlam.mobile.scaffolding.domain.androids.usecases.GetAndroids
+import ar.edu.unlam.mobile.scaffolding.domain.services.AndroidService
+import ar.edu.unlam.mobile.scaffolding.domain.usecases.GetAndroids
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

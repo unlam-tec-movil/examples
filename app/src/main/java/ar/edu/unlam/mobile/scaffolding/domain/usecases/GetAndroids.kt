@@ -1,6 +1,6 @@
-package ar.edu.unlam.mobile.scaffolding.domain.androids.usecases
+package ar.edu.unlam.mobile.scaffolding.domain.usecases
 
-import ar.edu.unlam.mobile.scaffolding.domain.androids.RealAndroid
+import ar.edu.unlam.mobile.scaffolding.domain.models.RealAndroid
 import kotlinx.coroutines.flow.Flow
 
 interface GetAndroids {
