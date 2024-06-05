@@ -15,10 +15,13 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import ar.edu.unlam.mobile.scaffolding.ui.components.BottomBar
+import ar.edu.unlam.mobile.scaffolding.ui.screens.AndroidCreateScreen
 import ar.edu.unlam.mobile.scaffolding.ui.screens.HomeScreen
 import ar.edu.unlam.mobile.scaffolding.ui.screens.RealAndroidDetailsScreen
 import ar.edu.unlam.mobile.scaffolding.ui.theme.ScaffoldingV2Theme
@@ -65,8 +68,14 @@ fun MainScreen() {
                 // Home es el componente en sí que es el destino de navegación.
                 HomeScreen(modifier = Modifier.padding(paddingValue))
             }
-            composable("details") {
-                RealAndroidDetailsScreen()
+            composable(
+                "details/{androidId}",
+                arguments = listOf(navArgument("androidId") { type = NavType.IntType }),
+            ) {
+                RealAndroidDetailsScreen(it.arguments?.getInt("androidId") ?: 0)
+            }
+            composable("create") {
+                AndroidCreateScreen()
             }
         }
     }

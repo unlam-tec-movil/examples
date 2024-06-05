@@ -12,25 +12,28 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import ar.edu.unlam.mobile.scaffolding.ui.components.ImageCard
 
 @Composable
-fun RealAndroidDetailsScreen(viewModel: RealAndroidsDetailsViewModel = hiltViewModel()) {
+fun RealAndroidDetailsScreen(
+    androidId: Int,
+    viewModel: RealAndroidsDetailsViewModel = hiltViewModel(),
+) {
     // La información que obtenemos desde el view model la consumimos a través de un estado de
     // "tres vías": Loading, Success y Error. Esto nos permite mostrar un estado de carga,
     // un estado de éxito y un mensaje de error.
+    viewModel.getAndroid(androidId.toUInt())
     val uiState: RealAndroidDetailsUIState by viewModel.uiState.collectAsState()
-
-    when (val androidState = uiState.androidDetailUIState) {
-        is AndroidDetailUIState.Loading -> {
-            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        when (val androidState = uiState.androidDetailUIState) {
+            is AndroidDetailUIState.Loading -> {
                 CircularProgressIndicator()
             }
-        }
 
-        is AndroidDetailUIState.Success -> {
-            ImageCard(androidState.android.name, androidState.android.description, androidState.android.picture)
-        }
+            is AndroidDetailUIState.Success -> {
+                ImageCard(androidState.android.name, androidState.android.description, androidState.android.picture)
+            }
 
-        is AndroidDetailUIState.Error -> {
-            // Error
+            is AndroidDetailUIState.Error -> {
+                // Error
+            }
         }
     }
 }

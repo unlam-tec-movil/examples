@@ -2,7 +2,7 @@ package ar.edu.unlam.mobile.scaffolding.ui.screens
 
 import androidx.lifecycle.ViewModel
 import ar.edu.unlam.mobile.scaffolding.domain.models.RealAndroid
-import ar.edu.unlam.mobile.scaffolding.domain.usecases.GetAndroids
+import ar.edu.unlam.mobile.scaffolding.domain.usecases.AndroidsUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -25,7 +25,7 @@ data class RealAndroidsUIState(
 @HiltViewModel
 class RealAndroidsViewModel
     @Inject
-    constructor(private val getAndroids: GetAndroids) : ViewModel() {
+    constructor(private val androidsUseCases: AndroidsUseCases) : ViewModel() {
         private val _uiState = MutableStateFlow(RealAndroidsUIState())
 
         val uiState = _uiState.asStateFlow()

@@ -1,10 +1,9 @@
 package ar.edu.unlam.mobile.scaffolding.domain.services
 
 import ar.edu.unlam.mobile.scaffolding.domain.models.RealAndroid
-import ar.edu.unlam.mobile.scaffolding.domain.usecases.GetAndroids
-import kotlinx.coroutines.delay
+import ar.edu.unlam.mobile.scaffolding.domain.repositories.AndroidRepository
+import ar.edu.unlam.mobile.scaffolding.domain.usecases.AndroidsUseCases
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 val androidsList =
@@ -35,29 +34,16 @@ val androidsList =
 
 class AndroidService
     @Inject
-    constructor() : GetAndroids {
+    constructor(private val androidRepository: AndroidRepository) : AndroidsUseCases {
         override suspend fun getAndroids(): Flow<List<RealAndroid>> {
-            return flow {
-                emit(
-                    androidsList,
-                )
-            }
+            return androidRepository.listAndroids()
         }
 
         override suspend fun getAndroid(id: UInt): Flow<RealAndroid> {
-            return flow {
-                delay(2000)
-                var res: RealAndroid? = null
-                androidsList.forEach {
-                    if (it.id == id) {
-                        res = it
-                    }
-                }
-                if (res == null) {
-                    throw Error("Not found")
-                } else {
-                    emit(res!!)
-                }
-            }
+            return androidRepository.getById(id.toInt())
+        }
+
+        override suspend fun createAndroid(android: RealAndroid) {
+            androidRepository.createAndroid(android)
         }
     }
