@@ -24,4 +24,8 @@ object ServiceProviders {
             "real_androids_database",
         ).build()
     }
+
+    @Provides
+    @Singleton
+    fun provideAndroidDao(database: AppDatabase) = database.androidDao()
 }

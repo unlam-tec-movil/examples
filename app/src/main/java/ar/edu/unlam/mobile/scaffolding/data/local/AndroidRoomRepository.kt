@@ -9,23 +9,22 @@ import javax.inject.Inject
 class AndroidRoomRepository
     @Inject
     constructor(
-        private val appDb: AppDatabase,
+        private val dao: AndroidDao,
     ) : AndroidLocalRepository {
-        private val androidDao = appDb.androidDao()
-
         override fun listAndroids(): Flow<List<RealAndroid>> {
-            return androidDao.listAndroids().map {
-                it.map { androidEntity ->
-                    androidEntity.asModel()
-                }
-            }
+            return dao.listAndroids().map(::mapToModel)
+        }
+
+        // Hack para testear el método map ejecutado dentro del flow
+        fun mapToModel(androidEntity: List<AndroidEntity>): List<RealAndroid> {
+            return androidEntity.map { it.asModel() }
         }
 
         override suspend fun createAndroid(android: RealAndroid) {
-            androidDao.createAndroid(android.asEntity())
+            dao.createAndroid(android.asEntity())
         }
 
         override fun getById(id: Int): Flow<RealAndroid> {
-            return androidDao.getById(id).map { it.asModel() }
+            return dao.getById(id).map { it.asModel() }
         }
     }
