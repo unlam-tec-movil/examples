@@ -13,7 +13,7 @@ ksp = "2.0.20-1.0.24"
 androidXHilt = "1.2.0"
 kover = "0.7.6"
 ktlint = "12.1.0"
-pagingCompose = "3.2.1"
+pagingCompose = "3.3.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
