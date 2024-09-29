@@ -1,8 +1,5 @@
 package ar.edu.unlam.mobile.scaffolding.ui.screens
 
-import android.app.Activity
-import android.content.Intent
-import android.provider.MediaStore
 import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,11 +9,15 @@ import javax.inject.Inject
 
 @Immutable
 sealed interface HelloMessageUIState {
-    data class Success(val message: String) : HelloMessageUIState
+    data class Success(
+        val message: String,
+    ) : HelloMessageUIState
 
     data object Loading : HelloMessageUIState
 
-    data class Error(val message: String) : HelloMessageUIState
+    data class Error(
+        val message: String,
+    ) : HelloMessageUIState
 }
 
 data class HomeUIState(
@@ -46,14 +47,4 @@ class HomeViewModel
         init {
             _uiState.value = HomeUIState(HelloMessageUIState.Success("2b"))
         }
-
-        private fun callToCamera(activity: Activity) {
-            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            try {
-                activity.startActivityForResult(intent)
-            }
-        }
-
     }
-
-
