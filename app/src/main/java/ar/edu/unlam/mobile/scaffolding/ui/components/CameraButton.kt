@@ -28,8 +28,14 @@ import coil.compose.rememberAsyncImagePainter
 
 @Composable
 fun Camera() {
+    // 1) Obtenemos el contexto actual
     val context = LocalContext.current
+
+    // 2) Creamos un archivo de imagen
     val file = context.createImageFile()
+
+    // 3) Obtenemos la URI del archivo. La URI del archivo es un Identificador Unido de Recursos.
+    // En criollo significa que es la ubicación del archivo en el dipositivo.
     val uri =
         FileProvider.getUriForFile(
             context,
@@ -37,15 +43,18 @@ fun Camera() {
             file,
         )
 
+    // 4) Creamos un estado mutable para almacenar la URI de la imagen capturada
     var capturedImageUri by remember {
         mutableStateOf<Uri>(Uri.EMPTY)
     }
 
+    // 5) Creamos un launcher para capturar la imagen
     val cameraLauncher =
         rememberLauncherForActivityResult(ActivityResultContracts.TakePicture()) {
             capturedImageUri = uri
         }
 
+    // 6) Creamos un launcher para solicitar permisos
     val permissionLauncher =
         rememberLauncherForActivityResult(
             ActivityResultContracts.RequestPermission(),
