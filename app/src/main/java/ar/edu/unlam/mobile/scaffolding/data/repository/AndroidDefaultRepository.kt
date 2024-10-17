@@ -7,16 +7,14 @@ import javax.inject.Inject
 
 class AndroidDefaultRepository
     @Inject
-    constructor(private val local: AndroidLocalRepository) : AndroidRepository {
-        override fun listAndroids(): Flow<List<RealAndroid>> {
-            return local.listAndroids()
-        }
+    constructor(
+        private val local: AndroidLocalRepository,
+    ) : AndroidRepository {
+        override fun listAndroids(): Flow<List<RealAndroid>> = local.listAndroids()
 
         override suspend fun createAndroid(android: RealAndroid) {
             local.createAndroid(android)
         }
 
-        override fun getById(id: Int): Flow<RealAndroid> {
-            return local.getById(id)
-        }
+        override fun getById(id: Int): Flow<RealAndroid> = local.getById(id)
     }
