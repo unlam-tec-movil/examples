@@ -11,21 +11,19 @@ class AndroidRoomRepository
     constructor(
         private val appDb: AppDatabase,
     ) : AndroidLocalRepository {
+        // Todo, recibir el dao por constructor
         private val androidDao = appDb.androidDao()
 
-        override fun listAndroids(): Flow<List<RealAndroid>> {
-            return androidDao.listAndroids().map {
+        override fun listAndroids(): Flow<List<RealAndroid>> =
+            androidDao.listAndroids().map {
                 it.map { androidEntity ->
                     androidEntity.asModel()
                 }
             }
-        }
 
         override suspend fun createAndroid(android: RealAndroid) {
             androidDao.createAndroid(android.asEntity())
         }
 
-        override fun getById(id: Int): Flow<RealAndroid> {
-            return androidDao.getById(id).map { it.asModel() }
-        }
+        override fun getById(id: Int): Flow<RealAndroid> = androidDao.getById(id).map { it.asModel() }
     }

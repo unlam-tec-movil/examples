@@ -10,6 +10,7 @@ import ar.edu.unlam.mobile.scaffolding.ui.components.AndroidForm
 @Composable
 fun AndroidCreateScreen(viewModel: AndroidCreateViewModel = hiltViewModel()) {
     Box(modifier = Modifier.fillMaxSize()) {
+        // Todo, volver a la home o dar feedback y borrar el formulario
         AndroidForm(onSubmit = viewModel::onSubmit)
     }
 }
