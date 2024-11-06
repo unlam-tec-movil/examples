@@ -9,11 +9,8 @@ import javax.inject.Inject
 class AndroidRoomRepository
     @Inject
     constructor(
-        private val appDb: AppDatabase,
+        private val androidDao: AndroidDao,
     ) : AndroidLocalRepository {
-        // Todo, recibir el dao por constructor
-        private val androidDao = appDb.androidDao()
-
         override fun listAndroids(): Flow<List<RealAndroid>> =
             androidDao.listAndroids().map {
                 it.map { androidEntity ->

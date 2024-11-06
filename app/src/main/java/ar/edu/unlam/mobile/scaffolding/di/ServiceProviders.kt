@@ -17,11 +17,15 @@ object ServiceProviders {
     @Singleton
     fun provideDatabase(
         @ApplicationContext context: Context,
-    ): AppDatabase {
-        return Room.databaseBuilder(
-            context.applicationContext,
-            AppDatabase::class.java,
-            "real_androids_database",
-        ).build()
-    }
+    ): AppDatabase =
+        Room
+            .databaseBuilder(
+                context.applicationContext,
+                AppDatabase::class.java,
+                "real_androids_database",
+            ).build()
+
+    @Provides
+    @Singleton
+    fun provideAndroidDao(database: AppDatabase) = database.androidDao()
 }
