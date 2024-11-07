@@ -31,11 +31,14 @@ class AndroidListTest {
                     description = "Android 2 description",
                 ),
             )
+        // When
         composeTestRule.setContent {
             AndroidList(androidList = androidList)
         }
+        // Then
         composeTestRule.onNodeWithText("Android 1").assertExists()
         composeTestRule.onNodeWithText("Android 1 description").assertExists()
         composeTestRule.onNodeWithText("Android 2").assertExists()
+        composeTestRule.onNodeWithText("Android 2 description").assertExists()
     }
 }

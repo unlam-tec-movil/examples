@@ -18,7 +18,7 @@ import org.mockito.kotlin.never
 @RunWith(MockitoJUnitRunner::class)
 class AndroidDefaultRepositoryTest {
     @Mock
-    private lateinit var local: AndroidLocalRepository
+    private lateinit var mockLocalRepository: AndroidLocalRepository
 
     @InjectMocks
     private lateinit var subject: AndroidDefaultRepository
@@ -28,15 +28,15 @@ class AndroidDefaultRepositoryTest {
         // Given
         val androidStub = RealAndroid("2b", 1u, "The best android", "https://www.google.com")
         val expected = flowOf(listOf(androidStub))
-        Mockito.`when`(local.listAndroids()).thenReturn(expected)
+        Mockito.`when`(mockLocalRepository.listAndroids()).thenReturn(expected)
         // When
         val actual = subject.listAndroids()
         // Then
         Assert.assertEquals(expected, actual)
-        Mockito.verify(local).listAndroids()
-        Mockito.verifyNoMoreInteractions(local)
+        Mockito.verify(mockLocalRepository).listAndroids()
+        Mockito.verifyNoMoreInteractions(mockLocalRepository)
         runBlocking {
-            Mockito.verify(local, never()).createAndroid(any())
+            Mockito.verify(mockLocalRepository, never()).createAndroid(any())
         }
     }
 

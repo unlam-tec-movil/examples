@@ -16,9 +16,12 @@ class GreetingTest {
     fun greetingComponentTest() {
         // Given
         val givenName = "Android"
+        val expected = "Hello Android!"
+        // When
         composeTestRule.setContent {
             Greeting(name = givenName)
         }
-        composeTestRule.onNodeWithText("Hello $givenName!").assertExists()
+        // Then
+        composeTestRule.onNodeWithText(expected).assertExists()
     }
 }
