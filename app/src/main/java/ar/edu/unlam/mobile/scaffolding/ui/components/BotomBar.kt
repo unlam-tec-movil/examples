@@ -1,6 +1,7 @@
 package ar.edu.unlam.mobile.scaffolding.ui.components
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Create
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -23,6 +24,17 @@ fun BottomBar(controller: NavHostController) {
                 Icon(
                     imageVector = Icons.Default.Home,
                     contentDescription = "Home",
+                    tint = MaterialTheme.colorScheme.primary,
+                )
+            },
+        )
+        NavigationBarItem(
+            selected = navBackStackEntry?.destination?.hierarchy?.any { it.route == "details" } == true,
+            onClick = { controller.navigate("create") },
+            icon = {
+                Icon(
+                    imageVector = Icons.Default.Create,
+                    contentDescription = "Create",
                     tint = MaterialTheme.colorScheme.primary,
                 )
             },
