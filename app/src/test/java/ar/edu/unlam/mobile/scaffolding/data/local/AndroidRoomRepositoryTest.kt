@@ -34,7 +34,5 @@ class AndroidRoomRepositoryTest {
                 Assert.assertEquals(expected, actual)
             }
         }
-
-        // Then
     }
 }

@@ -28,14 +28,17 @@ class AndroidCreateScreenTest {
             )
         val vm =
             mock<AndroidCreateViewModel> {
-                on { onSubmit(givenRealAndroid) }.then { }
+                on {
+                    onSubmit(givenRealAndroid)
+                }.then { }
             }
         composeTestRule.setContent {
             AndroidCreateScreen(vm)
         }
         // When
         composeTestRule.onNodeWithText("Name").assertExists().performTextInput("Android 1")
-        composeTestRule.onNodeWithText("Description").assertExists().performTextInput("Android 1 description")
+        composeTestRule.onNodeWithText("Description").assertExists()
+            .performTextInput("Android 1 description")
         composeTestRule
             .onNodeWithText("Image URL")
             .assertExists()
