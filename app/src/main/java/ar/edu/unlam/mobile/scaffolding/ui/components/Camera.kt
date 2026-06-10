@@ -32,6 +32,10 @@ fun Camera() {
     val context = LocalContext.current
 
     // 2) Creamos un archivo de imagen
+    // Para crear un archivo de imagen, necesitamos una función que nos permita crear un archivo
+    // temporal en el dispositivo. Esta función la podemos encontrar en el helper createImageFile
+    // que creamos previamente.
+    // Esta función nos devuelve un archivo de imagen con un nombre único y una extensión .jpg.
     val file = context.createImageFile()
 
     // 3) Obtenemos la URI del archivo. La URI del archivo es un Identificador Unido de Recursos.
