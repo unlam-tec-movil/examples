@@ -32,7 +32,7 @@ class AndroidDefaultRepositoryTest {
         Mockito.`when`(mockLocalRepository.listAndroids()).thenReturn(expected)
         // When
         val actual = subject.listAndroids()
-        // Then
+        // Then§§
         Assert.assertEquals(expected, actual)
         Mockito.verify(mockLocalRepository).listAndroids()
         Mockito.verifyNoMoreInteractions(mockLocalRepository)
