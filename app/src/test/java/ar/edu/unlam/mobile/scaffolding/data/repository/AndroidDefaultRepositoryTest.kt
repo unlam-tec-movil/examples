@@ -25,7 +25,8 @@ class AndroidDefaultRepositoryTest {
 
     @Test
     fun listAndroidsSuccess() {
-        // Given
+        // Given stub. Es un objeto con datos predefinidos que se utiliza para testear.
+        // No es un mock, no tiene comportamiento programado, solo datos.
         val androidStub = RealAndroid("2b", 1u, "The best android", "https://www.google.com")
         val expected = flowOf(listOf(androidStub))
         Mockito.`when`(mockLocalRepository.listAndroids()).thenReturn(expected)
@@ -36,7 +37,7 @@ class AndroidDefaultRepositoryTest {
         Mockito.verify(mockLocalRepository).listAndroids()
         Mockito.verifyNoMoreInteractions(mockLocalRepository)
         runBlocking {
-            Mockito.verify(mockLocalRepository, never()).createAndroid(any())
+            Mockito.verify(mockLocalRepository, never()).createAndroid(Mockito.any())
         }
     }
 
