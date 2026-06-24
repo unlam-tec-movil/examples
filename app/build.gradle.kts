@@ -70,6 +70,8 @@ dependencies {
     implementation(libs.squareup.retrofit2.converter.gson)
     implementation(libs.coil.kt.coil3.coil.compose)
     implementation(libs.coil.kt.coil3.coil.network.http)
+    implementation(libs.androidx.paging.runtime)
+    implementation(libs.androidx.paging.compose)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
