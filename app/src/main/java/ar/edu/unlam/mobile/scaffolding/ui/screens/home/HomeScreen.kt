@@ -1,10 +1,12 @@
-package ar.edu.unlam.mobile.scaffolding.ui.screens
+package ar.edu.unlam.mobile.scaffolding.ui.screens.home
 
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import ar.edu.unlam.mobile.scaffolding.ui.components.ArtworkList
 import ar.edu.unlam.mobile.scaffolding.ui.components.Greeting
 
 @Composable
@@ -23,10 +25,23 @@ fun HomeScreen(
         }
 
         is HelloMessageUIState.Success -> {
-            Greeting(helloState.message, modifier)
         }
 
         is HelloMessageUIState.Error -> {
+            // Error
+        }
+    }
+
+    when (val artworkState = uiState.artworkState) {
+        is ArtworkUIState.Loading -> {
+            CircularProgressIndicator()
+        }
+
+        is ArtworkUIState.Success -> {
+            ArtworkList(artworkState.artworkList)
+        }
+
+        is ArtworkUIState.Error -> {
             // Error
         }
     }
