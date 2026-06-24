@@ -1,7 +1,8 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.kotlin.compose.compiler)
     alias(libs.plugins.androidApplication)
-    alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.ksp)
     alias(libs.plugins.daggerHiltAndroid)
     alias(libs.plugins.kover)
@@ -10,13 +11,13 @@ plugins {
 
 android {
     namespace = "ar.edu.unlam.mobile.scaffolding"
-    compileSdk = 35
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "ar.edu.unlam.mobile.scaffolding"
         minSdk = 24
         //noinspection EditedTargetSdkVersion
-        targetSdk = 35
+        targetSdk = 37
         versionCode = 1
         versionName = "1.0"
 
@@ -39,8 +40,10 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = "17"
+    kotlin {
+        compilerOptions {
+            jvmTarget = JvmTarget.JVM_17
+        }
     }
     buildFeatures {
         compose = true
@@ -63,6 +66,10 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.squareup.retrofit2.retrofit)
+    implementation(libs.squareup.retrofit2.converter.gson)
+    implementation(libs.coil.kt.coil3.coil.compose)
+    implementation(libs.coil.kt.coil3.coil.network.http)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
